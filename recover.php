@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'gmail@gmail.com'; // Your Gmail address
-            $mail->Password = 'password'; // Your Gmail password or App PasswordLS;
+            $mail->Username = '22131383@students.liu.edu.lb'; // Your Gmail address
+            $mail->Password = 'wgwqkhbvjwmclphf'; // Your Gmail password or App PasswordLS;
             $mail->Port = 587;
 
             $mail->setFrom('your_email@gmail.com', 'Administrator');

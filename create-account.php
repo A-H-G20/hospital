@@ -61,8 +61,8 @@
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'gmail@gmail.com'; // Your Gmail address
-            $mail->Password = 'password'; // Your Gmail password or App Password
+            $mail->Username = '22131383@students.liu.edu.lb'; // Your Gmail address
+            $mail->Password = 'wgwqkhbvjwmclphf'; // Your Gmail password or App Password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
@@ -142,7 +142,7 @@
                 </tr>
                 <tr>
                     <td class="label-td" colspan="2">
-                        <input type="tel" name="tele" class="input-text" placeholder="ex: 0712345678" pattern="[0]{1}[0-9]{9}">
+                        <input type="tel" name="tele" class="input-text" placeholder="ex: 0712345678" >
                     </td>
                 </tr>
                 <tr>

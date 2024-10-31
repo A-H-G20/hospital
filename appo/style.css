@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpg'); /* Add a background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #fff;
+}
+
+.appointment-form {
+    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.appointment-form h2 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Two-column layout */
+}
+
+.form-content label {
+    margin-bottom: 0.3rem;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.form-content input,
+.form-content select {
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #222;
+    color: #fff;
+}
+
+.appointment-form button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+.appointment-form button:hover {
+    background-color: #218838;
+}
+
+/* Success message styling */
+.success-box {
+    position: fixed;
+    top: 20px;
+    right: -300px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Show the success box */
+.success-box.show {
+    transform: translateX(-320px);
+    opacity: 1;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Input and button focus effect */
+.form-content input:focus,
+.form-content select:focus,
+.appointment-form button:focus {
+    outline: none;
+    border: 1px solid #28a745;
+    background-color: #333;
+}
