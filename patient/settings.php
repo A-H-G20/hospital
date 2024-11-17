@@ -79,78 +79,58 @@
                     </td>
 
                 </tr>
+                <tr class="menu-row" >
+                    <td class="menu-btn menu-icon-home " >
+                        <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Home</p></a></div></a>
+                    </td>
+                </tr>
                 <tr class="menu-row">
-                    <td class="menu-btn menu-icon-home ">
-                        <a href="index.php" class="non-style-link-menu ">
-                            <div>
-                                <p class="menu-text">Home</p>
-                        </a>
-        </div></a>
-        </td>
-        </tr>
-        <tr class="menu-row">
-            <td class="menu-btn menu-icon-doctor">
-                <a href="doctors.php" class="non-style-link-menu">
-                    <div>
-                        <p class="menu-text">All Doctors</p>
-                </a>
-    </div>
-    </td>
-    </tr>
-
-    <tr class="menu-row">
-        <td class="menu-btn menu-icon-session">
-            <a href="schedule.php" class="non-style-link-menu">
-                <div>
-                    <p class="menu-text">Scheduled Sessions</p>
-                </div>
-            </a>
-        </td>
-    </tr>
-    <tr class="menu-row">
-        <td class="menu-btn menu-icon-appoinment">
-            <a href="appointment.php" class="non-style-link-menu">
-                <div>
-                    <p class="menu-text">My Bookings</p>
-            </a></div>
-        </td>
-    </tr>
-    <tr class="menu-row">
-        <td class="menu-btn menu-icon-settings  menu-active menu-icon-settings-active">
-            <a href="settings.php" class="non-style-link-menu  non-style-link-menu-active">
-                <div>
-                    <p class="menu-text">Settings</p>
-            </a></div>
-        </td>
-    </tr>
-
-    </table>
-    </div>
-    <div class="dash-body" style="margin-top: 15px">
-        <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;">
-
-            <tr>
-
-                <td width="13%">
-                    <a href="index.php"><button class="login-btn btn-primary-soft btn btn-icon-back" style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px">
-                            <font class="tn-in-text">Back</font>
-                        </button></a>
-                </td>
-                <td>
-                    <p style="font-size: 23px;padding-left:12px;font-weight: 600;">Settings</p>
-
-                </td>
-
-                <td width="15%">
-                    <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
-                        Today's Date
-                    </p>
-                    <p class="heading-sub12" style="padding: 0;margin: 0;">
-                        <?php
-                        date_default_timezone_set('Asia/Kolkata');
-
-                        $today = date('Y-m-d');
-                        echo $today;
+                    <td class="menu-btn menu-icon-doctor">
+                        <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></a></div>
+                    </td>
+                </tr>
+                
+                <tr class="menu-row" >
+                    <td class="menu-btn menu-icon-session">
+                        <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Scheduled Sessions</p></div></a>
+                    </td>
+                </tr>
+                <tr class="menu-row" >
+                    <td class="menu-btn menu-icon-appoinment">
+                        <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">My Bookings</p></a></div>
+                    </td>
+                </tr>
+                <tr class="menu-row" >
+                    <td class="menu-btn menu-icon-settings  menu-active menu-icon-settings-active">
+                        <a href="settings.php" class="non-style-link-menu  non-style-link-menu-active"><div><p class="menu-text">Settings</p></a></div>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+        <div class="dash-body" style="margin-top: 15px">
+            <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;" >
+                        
+                        <tr >
+                            
+                        <td width="13%" >
+                    <a href="settings.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
+                    </td>
+                    <td>
+                        <p style="font-size: 23px;padding-left:12px;font-weight: 600;">Settings</p>
+                                           
+                    </td>
+                    
+                            <td width="15%">
+                                <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
+                                    Today's Date
+                                </p>
+                                <p class="heading-sub12" style="padding: 0;margin: 0;">
+                                    <?php 
+                                date_default_timezone_set('Asia/Kolkata');
+        
+                                $today = date('Y-m-d');
+                                echo $today;
 
 
                         $patientrow = $database->query("select  * from  patient;");
