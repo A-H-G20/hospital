@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 18, 2024 at 11:14 AM
+-- Generation Time: Oct 31, 2024 at 03:37 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -73,17 +73,44 @@ CREATE TABLE IF NOT EXISTS `doctor` (
   `docpassword` varchar(255) DEFAULT NULL,
   `docnic` varchar(15) DEFAULT NULL,
   `doctel` varchar(15) DEFAULT NULL,
-  `specialties` int DEFAULT NULL,
+  `specialties` int DEFAULT '1',
   PRIMARY KEY (`docid`),
   KEY `specialties` (`specialties`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `doctor`
 --
 
 INSERT INTO `doctor` (`docid`, `docemail`, `docname`, `docpassword`, `docnic`, `doctel`, `specialties`) VALUES
-(1, 'doctor@edoc.com', 'Test Doctor', '123', '000000000', '0110000000', 1);
+(1, 'doctor@edoc.com', 'Test Doctor', '123', '000000000', '0110000000', 1),
+(2, 'ahmadghosen20@gmail.com', 'ahmad', 'patient', '23456', '0000000000', 1),
+(3, 'ahmadghosen200@gmail.com', 'Ahmad Ghosen', '123', '23456', '0000000000', 0),
+(4, 'ahmadghosen281@gmail.com', 'Ahmad Ghosen', '123', '23456', '0000000000', 0),
+(5, 'patient@gmail.com', 'Ahmad Ghosen', '123', '23456', '0000000000', 0),
+(6, 'ahmadghosen2003@gmail.com', 'Ahmad Ghosen', '123', '23456', '0000000000', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctor_req`
+--
+
+DROP TABLE IF EXISTS `doctor_req`;
+CREATE TABLE IF NOT EXISTS `doctor_req` (
+  `pid` int NOT NULL AUTO_INCREMENT,
+  `pemail` varchar(255) NOT NULL,
+  `pname` varchar(255) NOT NULL,
+  `ppassword` varchar(255) NOT NULL,
+  `paddress` text,
+  `pnic` varchar(20) DEFAULT NULL,
+  `pdob` date DEFAULT NULL,
+  `ptel` varchar(15) DEFAULT NULL,
+  `certificate` text NOT NULL,
+  `specialties` int NOT NULL,
+  `status` enum('pending','accepted','declined') NOT NULL DEFAULT 'pending',
+  PRIMARY KEY (`pid`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -107,14 +134,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `reset_code_expires` datetime DEFAULT NULL,
   `email_verified_at` date DEFAULT NULL,
   PRIMARY KEY (`pid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `patient`
---
-
-INSERT INTO `patient` (`pid`, `pemail`, `pname`, `ppassword`, `paddress`, `pnic`, `pdob`, `ptel`, `verification_code`, `reset_code`, `verified`, `reset_code_expires`, `email_verified_at`) VALUES
-(1, 'patient@edoc.com', 'patient patient', 'patient', 'Rua Caio Jos de Miranda 542, Aa', '23456', '2024-06-03', '0000000000', NULL, NULL, 1, NULL, '2024-10-18');
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -242,7 +262,11 @@ CREATE TABLE IF NOT EXISTS `webuser` (
 INSERT INTO `webuser` (`email`, `usertype`) VALUES
 ('admin@edoc.com', 'a'),
 ('doctor@edoc.com', 'd'),
-('patient@edoc.com', 'p');
+('patient@gmail.com', 'd'),
+('ahmadghosen281@gmail.com', 'd'),
+('ahmadghosen200@gmail.com', 'd'),
+('ahmadghosen20@gmail.com', 'd'),
+('ahmadghosen2003@gmail.com', 'd');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

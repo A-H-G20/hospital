@@ -228,16 +228,16 @@
                                     
                                 }
                                 else{
-                                for ( $x=0; $x<$result->num_rows;$x++){
-                                    $row=$result->fetch_assoc();
-                                    $docid=$row["docid"];
-                                    $name=$row["docname"];
-                                    $email=$row["docemail"];
-                                    $spe=$row["specialties"];
-                                    $spcil_res= $database->query("select sname from specialties where id='$spe'");
-                                    $spcil_array= $spcil_res->fetch_assoc();
-                                    $spcil_name=$spcil_array["sname"];
-                                    echo '<tr>
+                                    for ( $x=0; $x<$result->num_rows;$x++){
+                                        $row=$result->fetch_assoc();
+                                        $docid=$row["docid"];
+                                        $name=$row["docname"];
+                                        $email=$row["docemail"];
+                                        $spe=$row["specialties"];
+                                        $spcil_res= $database->query("select sname from specialties where id='$spe'");
+                                        $spcil_array= $spcil_res->fetch_assoc();
+                                        $spcil_name=$spcil_array["sname"];
+                                        echo '<tr>
                                         <td> &nbsp;'.
                                         substr($name,0,30)
                                         .'</td>
@@ -258,7 +258,6 @@
                                         </div>
                                         </td>
                                     </tr>';
-                                    
                                 }
                             }
                                  

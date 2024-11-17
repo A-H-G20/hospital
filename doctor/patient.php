@@ -113,15 +113,21 @@
                             $selecttype="my";
                         }
                         
-                        if(isset($_POST["filter"])){
-                            if($_POST["showonly"]=='all'){
-                                $sqlmain= "select * from patient";
-                                $selecttype="All";
-                                $current="All patients";
-                            }else{
-                                $sqlmain= "select * from appointment inner join patient on patient.pid=appointment.pid inner join schedule on schedule.scheduleid=appointment.scheduleid where schedule.docid=$userid;";
-                                $selecttype="My";
-                                $current="My patients Only";
+                        if (isset($_POST["filter"])) {
+                            // Check if 'showonly' is set in $_POST
+                            if (isset($_POST["showonly"]) && $_POST["showonly"] == 'all') {
+                                // Case when showonly is 'all'
+                                $sqlmain = "SELECT * FROM patient";
+                                $selecttype = "All";
+                                $current = "All patients";
+                            } else {
+                                // Case when showonly is not 'all' or not set, assume it's for "My patients"
+                                $sqlmain = "SELECT * FROM appointment 
+                                            INNER JOIN patient ON patient.pid = appointment.pid 
+                                            INNER JOIN schedule ON schedule.scheduleid = appointment.scheduleid 
+                                            WHERE schedule.docid = $userid";
+                                $selecttype = "My";
+                                $current = "My patients Only";
                             }
                         }
                     }else{
@@ -137,7 +143,7 @@
                 <tr >
                     <td width="13%">
 
-                    <a href="patient.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
+                    <a href="index.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
                         
                     </td>
                     <td>

@@ -68,7 +68,7 @@
                     </td>
                 </tr>
             </table>
-            <p class="sub-text2 footer-hashen">A Web Solution by Hashen.</p>
+            
         </center>
 
     </div>

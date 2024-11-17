@@ -70,6 +70,11 @@
                         <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Dashboard</p></a></div></a>
                     </td>
                 </tr>
+                <tr class="menu-row" >
+                    <td class="menu-btn menu-icon-dashbord" >
+                        <a href="doctor_req.php" class="non-style-link-menu"><div><p class="menu-text">Doctor Request</p></a></div></a>
+                    </td>
+                </tr>
                 <tr class="menu-row">
                     <td class="menu-btn menu-icon-doctor menu-active menu-icon-doctor-active">
                         <a href="doctors.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Doctors</p></a></div>
@@ -97,7 +102,7 @@
             <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;margin-top:25px; ">
                 <tr >
                     <td width="13%">
-                        <a href="doctors.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
+                        <a href="index.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
                     </td>
                     <td>
                         
@@ -226,38 +231,52 @@
                                     
                                 }
                                 else{
-                                for ( $x=0; $x<$result->num_rows;$x++){
-                                    $row=$result->fetch_assoc();
-                                    $docid=$row["docid"];
-                                    $name=$row["docname"];
-                                    $email=$row["docemail"];
-                                    $spe=$row["specialties"];
-                                    $spcil_res= $database->query("select sname from specialties where id='$spe'");
-                                    $spcil_array= $spcil_res->fetch_assoc();
-                                    $spcil_name=$spcil_array["sname"];
-                                    echo '<tr>
-                                        <td> &nbsp;'.
-                                        substr($name,0,30)
-                                        .'</td>
-                                        <td>
-                                        '.substr($email,0,20).'
-                                        </td>
-                                        <td>
-                                            '.substr($spcil_name,0,20).'
-                                        </td>
-
-                                        <td>
-                                        <div style="display:flex;justify-content: center;">
-                                        <a href="?action=edit&id='.$docid.'&error=0" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-edit"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Edit</font></button></a>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <a href="?action=view&id='.$docid.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-view"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">View</font></button></a>
-                                       &nbsp;&nbsp;&nbsp;
-                                       <a href="?action=drop&id='.$docid.'&name='.$name.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-delete"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Remove</font></button></a>
-                                        </div>
-                                        </td>
-                                    </tr>';
+                                    for ($x = 0; $x < $result->num_rows; $x++) {
+                                        $row = $result->fetch_assoc();
+                                        $docid = $row["docid"];
+                                        $name = $row["docname"];
+                                        $email = $row["docemail"];
+                                        $spe = $row["specialties"];
+                                        
+                                        // Fetch specialty name
+                                        $spcil_res = $database->query("SELECT sname FROM specialties WHERE id='$spe'");
+                                        
+                                        // Check if the specialty query returned any results
+                                        if ($spcil_res && $spcil_res->num_rows > 0) {
+                                            $spcil_array = $spcil_res->fetch_assoc();
+                                            $spcil_name = $spcil_array["sname"];
+                                        } else {
+                                            $spcil_name = "Specialty not found"; // Default if no specialty is found
+                                        }
+                                        
+                                        echo '<tr>
+                                            <td>&nbsp;' . substr($name, 0, 30) . '</td>
+                                            <td>' . substr($email, 0, 20) . '</td>
+                                            <td>' . substr($spcil_name, 0, 20) . '</td>
+                                            <td>
+                                                <div style="display:flex;justify-content: center;">
+                                                    <a href="?action=edit&id=' . $docid . '&error=0" class="non-style-link">
+                                                        <button class="btn-primary-soft btn button-icon btn-edit" style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;">
+                                                            <font class="tn-in-text">Edit</font>
+                                                        </button>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <a href="?action=view&id=' . $docid . '" class="non-style-link">
+                                                        <button class="btn-primary-soft btn button-icon btn-view" style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;">
+                                                            <font class="tn-in-text">View</font>
+                                                        </button>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <a href="?action=drop&id=' . $docid . '&name=' . $name . '" class="non-style-link">
+                                                        <button class="btn-primary-soft btn button-icon btn-delete" style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;">
+                                                            <font class="tn-in-text">Remove</font>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>';
+                                    }
                                     
-                                }
                             }
                                  
                             ?>

@@ -73,11 +73,17 @@
                         <a href="index.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Dashboard</p></a></div></a>
                     </td>
                 </tr>
+                <tr class="menu-row" >
+                    <td class="menu-btn menu-icon-dashbord" >
+                        <a href="doctor_req.php" class="non-style-link-menu"><div><p class="menu-text">Doctor Request</p></a></div></a>
+                    </td>
+                </tr>
                 <tr class="menu-row">
                     <td class="menu-btn menu-icon-doctor ">
                         <a href="doctors.php" class="non-style-link-menu "><div><p class="menu-text">Doctors</p></a></div>
                     </td>
                 </tr>
+                
                 <tr class="menu-row" >
                     <td class="menu-btn menu-icon-schedule">
                         <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Schedule</p></div></a>
@@ -170,19 +176,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%;">
-                                    <div  class="dashboard-items"  style="padding:20px;margin:auto;width:95%;display: flex">
-                                        <div>
-                                                <div class="h1-dashboard">
-                                                    <?php    echo $doctorrow->num_rows  ?>
-                                                </div><br>
-                                                <div class="h3-dashboard">
-                                                    Doctors &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </div>
-                                        </div>
-                                                <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/doctors-hover.svg');"></div>
-                                    </div>
-                                </td>
+                            <td style="width: 25%;">
+                             <div class="dashboard-items" style="padding: 20px; margin: auto; width: 95%; display: flex; align-items: center;">
+                                <div>
+                                <div class="h1-dashboard">
+                                    <?php echo $doctorrow->num_rows; ?>
+                                  </div><br>
+                          <div class="h3-dashboard">
+                          <a href="doctors.php" style="text-decoration: none; color: inherit;">Doctors</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+              </div>
+              <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/doctors-hover.svg');"></div>
+          </div>
+            </td>
                                 <td style="width: 25%;">
                                     <div  class="dashboard-items"  style="padding:20px;margin:auto;width:95%;display: flex;">
                                         <div>
@@ -190,7 +196,7 @@
                                                     <?php    echo $patientrow->num_rows  ?>
                                                 </div><br>
                                                 <div class="h3-dashboard">
-                                                    Patients &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="patient.php" style="text-decoration: none; color: inherit;"> Patients</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </div>
                                         </div>
                                                 <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/patients-hover.svg');"></div>

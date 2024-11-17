@@ -152,6 +152,12 @@
                     <table class="filter-container doctor-header patient-header" style="border: none;width:95%" border="0" >
                     <tr>
                         <td >
+                        <form action="../appo" method="$_POST">
+                        <center>
+                             <input type="submit" value="MAKE AN APPOINTMENT HERE!!" class="login-btn btn-primary btn"
+                         style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;"> 
+                        </center> 
+                </form>  
                             <h3>Welcome!</h3>
                             <h1><?php echo $username  ?>.</h1>
                             <p>Haven't any idea about doctors? no problem let's jumping to 
@@ -219,7 +225,7 @@
                                                                     <?php    echo $doctorrow->num_rows  ?>
                                                                 </div><br>
                                                                 <div class="h3-dashboard">
-                                                                    All Doctors &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <a href="doctors.php" style="text-decoration: none; color: inherit;">All Doctors</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                 </div>
                                                         </div>
                                                                 <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/doctors-hover.svg');"></div>
@@ -397,4 +403,6 @@
 
 
 </body>
+
+</script>
 </html>
