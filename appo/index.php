@@ -82,12 +82,12 @@
             const doctorSelect = document.getElementById('doctor');
             doctorSelect.innerHTML = '<option value="">Loading...</option>'; // Show loading message
             
-            fetch(get_doctors.php?specialty_id=${specialtyId})
+            fetch(`get_doctors.php?specialty_id=${specialtyId}`)
                 .then(response => response.json())
                 .then(data => {
                     doctorSelect.innerHTML = '<option value="">Select a doctor</option>'; // Reset the dropdown
                     data.forEach(doctor => {
-                        doctorSelect.innerHTML += <option value="${doctor.docid}">${doctor.docname}</option>;
+                        doctorSelect.innerHTML += `<option value="${doctor.docid}">${doctor.docname}</option>`;
                     });
                 })
                 .catch(error => {

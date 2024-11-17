@@ -145,14 +145,6 @@
                         <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Dashboard</p></div></a>
                     </td>
                 </tr>
-<<<<<<< HEAD
-                <tr class="menu-row" >
-                    <td class="menu-btn menu-icon-dashbord" >
-                        <a href="doctor_req.php" class="non-style-link-menu"><div><p class="menu-text">Doctor Request</p></a></div></a>
-                    </td>
-                </tr>
-=======
->>>>>>> 268c47049b37c187edb2fbe1f0d5d20b32d31fde
                 <tr class="menu-row">
                     <td class="menu-btn menu-icon-doctor">
                         <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">Doctors</p></div></a>
@@ -169,13 +161,8 @@
                     </td>
                 </tr>
                 <tr class="menu-row">
-<<<<<<< HEAD
-                    <td class="menu-btn menu-icon-appoinment">
-                        <a href="patient.php" class="non-style-link-menu"><div><p class="menu-text">Patients</p></div></a>
-=======
                     <td class="menu-btn menu-icon-patient menu-active menu-icon-patient-active">
                         <a href="doctor_req.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Patients</p></div></a>
->>>>>>> 268c47049b37c187edb2fbe1f0d5d20b32d31fde
                     </td>
                 </tr>
             </table>
@@ -246,23 +233,6 @@
         </div>
     </div>
     <script>
-<<<<<<< HEAD
-    function showPopup(action, id) {
-        if (confirm(`Are you sure you want to ${action} this request?`)) { // Added backticks for template literal
-            const form = document.createElement("form");
-            form.method = "POST";
-            form.action = ""; 
-            form.innerHTML = `<input type="hidden" name="action" value="${action}">
-                              <input type="hidden" name="id" value="${id}">`;
-            document.body.appendChild(form);
-            form.submit();
-        }
-    }
-</script>
-
-</body>
-</html>
-=======
         function showPopup(action, id) {
             if (confirm(`Are you sure you want to ${action} this request?`)) {
                 const form = document.createElement("form");
@@ -277,4 +247,3 @@
     </script>
 </body>
 </html>
->>>>>>> 268c47049b37c187edb2fbe1f0d5d20b32d31fde
