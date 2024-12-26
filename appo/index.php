@@ -173,9 +173,19 @@ $userphone = $userfetch["ptel"];
             </div>
 
             <div class="form-content">
-                <label for="date">Appointment Date:</label>
-                <input type="date" id="date" name="date" required>
-            </div>
+    <label for="date">Appointment Date:</label>
+    <input type="date" id="date" name="date" required>
+</div>
+
+<script>
+    // Prevent selecting past dates
+    document.addEventListener('DOMContentLoaded', () => {
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    });
+</script>
+
 
             <div class="form-content">
                 <label for="time">Appointment Time:</label>
