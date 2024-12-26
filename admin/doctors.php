@@ -272,6 +272,8 @@
                                                             <font class="tn-in-text">Remove</font>
                                                         </button>
                                                     </a>
+
+                                                    
                                                 </div>
                                             </td>
                                         </tr>';
@@ -280,6 +282,7 @@
                             }
                                  
                             ?>
+                         
  
                             </tbody>
 

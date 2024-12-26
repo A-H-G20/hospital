@@ -204,119 +204,308 @@
 
                 ?>
                   
-                <tr>
-                   <td colspan="4">
-                       <center>
-                        <div class="abc scroll">
-                        <table width="93%" class="sub-table scrolldown" border="0">
-                        <thead>
-                        <tr>
-                                <th class="table-headin">
-                                    Patient name
-                                </th>
-                                <th class="table-headin">
-                                    
-                                    Appointment number
-                                    
-                                </th>
-                               
-                                <th class="table-headin">
-                                    
-                                
-                                    Session Title
-                                    
-                                    </th>
-                                
-                                <th class="table-headin" >
-                                    
-                                    Session Date & Time
-                                    
-                                </th>
-                                
-                                <th class="table-headin">
-                                    
-                                    Appointment Date
-                                    
-                                </th>
-                                
-                                <th class="table-headin">
-                                    
-                                    Events
-                                    
-                                </tr>
-                        </thead>
-                        <tbody>
-                        
-                            <?php
+               
+                        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 2px;
+        }
+     
+/* General styles for loading container */
+.loading-container {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
 
-                                
-                                $result= $database->query($sqlmain);
+/* Circle loader */
+.loader-circle {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
 
-                                if($result->num_rows==0){
-                                    echo '<tr>
-                                    <td colspan="7">
-                                    <br><br><br><br>
-                                    <center>
-                                    <img src="../img/notfound.svg" width="25%">
-                                    
-                                    <br>
-                                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">We  couldnt find anything related to your keywords !</p>
-                                    <a class="non-style-link" href="appointment.php"><button  class="login-btn btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Show all Appointments &nbsp;</font></button>
-                                    </a>
-                                    </center>
-                                    <br><br><br><br>
-                                    </td>
-                                    </tr>';
-                                    
-                                }
-                                else{
-                                for ( $x=0; $x<$result->num_rows;$x++){
-                                    $row=$result->fetch_assoc();
-                                    $appoid=$row["appoid"];
-                                    $scheduleid=$row["scheduleid"];
-                                    $title=$row["title"];
-                                    $docname=$row["docname"];
-                                    $scheduledate=$row["scheduledate"];
-                                    $scheduletime=$row["scheduletime"];
-                                    $pname=$row["pname"];
-                                    $apponum=$row["apponum"];
-                                    $appodate=$row["appodate"];
-                                    echo '<tr >
-                                        <td style="font-weight:600;"> &nbsp;'.
-                                        
-                                        substr($pname,0,25)
-                                        .'</td >
-                                        <td style="text-align:center;font-size:23px;font-weight:500; color: var(--btnnicetext);">
-                                        '.$apponum.'
-                                        
-                                        </td>
-                                        <td>
-                                        '.substr($title,0,15).'
-                                        </td>
-                                        <td style="text-align:center;;">
-                                            '.substr($scheduledate,0,10).' @'.substr($scheduletime,0,5).'
-                                        </td>
-                                        
-                                        <td style="text-align:center;">
-                                            '.$appodate.'
-                                        </td>
+/* Dots loader */
+.loader-dots div {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #3498db;
+    border-radius: 50%;
+    animation: dots 1.5s infinite ease-in-out;
+}
+.loader-dots div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.4s;
+}
+.loader-dots div:nth-child(2) {
+    left: 16px;
+    animation-delay: -0.2s;
+}
+.loader-dots div:nth-child(3) {
+    left: 24px;
+}
 
-                                        <td>
-                                        <div style="display:flex;justify-content: center;">
-                                        
-                                        <!--<a href="?action=view&id='.$appoid.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-view"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">View</font></button></a>
-                                       &nbsp;&nbsp;&nbsp;-->
-                                       <a href="?action=drop&id='.$appoid.'&name='.$pname.'&session='.$title.'&apponum='.$apponum.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-delete"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Cancel</font></button></a>
-                                       &nbsp;&nbsp;&nbsp;</div>
-                                        </td>
-                                    </tr>';
-                                    
-                                }
-                            }
-                                 
-                            ?>
- 
-                            </tbody>
+/* Pulsing loader */
+.loader-pulse {
+    width: 10px;
+    height: 10px;
+    background-color: #3498db;
+    border-radius: 50%;
+    animation: pulse 1s infinite alternate;
+}
+
+/* Spinning square loader */
+.loader-square {
+    width: 20px;
+    height: 20px;
+    background: #3498db;
+    animation: square-spin 1s infinite ease-in-out;
+}
+
+/* Bar loader */
+.loader-bar {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #3498db, #f4f4f4);
+    background-size: 200% 100%;
+    animation: bar-slide 1s infinite;
+}
+
+/* Keyframes */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dots {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}
+
+@keyframes square-spin {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes bar-slide {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+
+/* General button styles */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Accept button (green theme) */
+button.accept {
+    background-color: #28a745;
+    border: 1px solid #28a745;
+}
+
+button.accept:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+button.accept:active {
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+/* Decline button (red theme) */
+button.decline {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+button.decline:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+button.decline:active {
+    background-color: #bd2130;
+    border-color: #b21f2d;
+}
+
+/* Disabled state */
+button:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+    </style>
+    <script>
+function updateStatus(appointmentId, action) {
+    // Find the button's parent cell
+    const eventCell = document.querySelector(`#events-${appointmentId}`);
+
+    // Show a random loader (choose one of the 5 loaders)
+    const loaders = [
+        '<div class="loading-container"><div class="loader-circle"></div></div>',
+        '<div class="loading-container loader-dots"><div></div><div></div><div></div></div>',
+        '<div class="loading-container loader-pulse"></div>',
+        '<div class="loading-container loader-square"></div>',
+        '<div class="loading-container loader-bar"></div>',
+    ];
+    const randomLoader = loaders[Math.floor(Math.random() * loaders.length)];
+
+    // Replace buttons with loader
+    eventCell.innerHTML = randomLoader;
+
+    // Perform AJAX request
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_status.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        // Restore buttons and show alert on completion
+        if (xhr.status === 200) {
+            const response = xhr.responseText;
+            alert(response);
+
+            // Update status in the table
+            if (response.includes("successfully")) {
+                const statusCell = document.querySelector(`#status-${appointmentId}`);
+                statusCell.textContent = action === "accept" ? "Accepted" : "Declined";
+            }
+        } else {
+            alert("An error occurred. Please try again.");
+        }
+
+        // Restore buttons
+        eventCell.innerHTML = `
+            <button onclick="updateStatus(${appointmentId}, 'accept')">Accept</button>
+            <button onclick="updateStatus(${appointmentId}, 'decline')">Decline</button>
+        `;
+    };
+
+    xhr.send(`appointment_id=${appointmentId}&action=${action}`);
+}
+</script>
+
+</head>
+<body>
+    <h1>Appointments</h1>
+    
+    <table width="93%" class="sub-table scrolldown" border="0">
+        <thead>
+            <tr>
+                <th class="table-headin" >Patient Name</th>
+                <th class="table-headin">Email</th>
+                <th class="table-headin">Phone</th>
+                <th class="table-headin">Date</th>
+                <th class="table-headin">Time</th>
+                <th class="table-headin">Status</th>
+                <th class="table-headin">Events</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Database connection details
+            $servername = "localhost";
+            $username = "root"; // Replace with your database username
+            $password = ""; // Replace with your database password
+            $dbname = "edoc"; // Replace with your database name
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Query to fetch data from the appointments table
+            $sql = "SELECT id, name, email, phone, date, time, status FROM appointments";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Output data for each row
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['date']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['time']) . "</td>";
+                    echo "<td id='status-" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['status']) . "</td>";
+                    echo "<td id='events-" . htmlspecialchars($row['id']) . "'>
+                    <button class='accept' onclick=\"updateStatus(" . htmlspecialchars($row['id']) . ", 'accept')\">Accept</button>
+                    <button class='decline' onclick=\"updateStatus(" . htmlspecialchars($row['id']) . ", 'decline')\">Decline</button>
+                </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='7'>No appointments found</td></tr>";
+            }
+
+            // Close connection
+            $conn->close();
+            ?>
+        </tbody>
+    </table>
+</body>
+</html>
+
 
                         </table>
                         </div>

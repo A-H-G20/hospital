@@ -6,23 +6,135 @@
     <title>Patient Appointment</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+        }
+        .appointment-form button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #0d7eef;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+    font-size: 1.2rem; /* Makes the text larger */
+    font-family: 'Arial', sans-serif; /* Sets the font style */
+    font-weight: bold; /* Makes the text bold */
+    text-transform: uppercase; /* Optional: Capitalizes all letters */
+}
+
+.appointment-form button:hover {
+    background-color: #0ba0e5;
+}
+/* Success message styling */
+.success-box {
+    position: fixed;
+    top: 20px;
+    right: -300px;
+    background-color: #056dec;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Show the success box */
+.success-box.show {
+    transform: translateX(-320px);
+    opacity: 1;
+}
+
+
+header {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Changed from left to right */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+header a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.logo {
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Keeps aspect ratio */
+    display: block;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow */
+    border-radius: 8px; /* Optional: Slightly rounds the edges */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition on hover */
+}
+
+.logo:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Shadow becomes stronger on hover */
+}
+
+    </style>
 <body>
+<?php
+// Assuming you're including the connection file here as well
+include("../connection.php");
+
+session_start();
+
+if(isset($_SESSION["user"])) {
+    if ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'p') {
+        header("location: ../login.php");
+    } else {
+        $useremail = $_SESSION["user"];
+    }
+} else {
+    header("location: ../login.php");
+}
+
+// Get the user data from the database
+$userrow = $database->query("SELECT * FROM patient WHERE pemail='$useremail'");
+$userfetch = $userrow->fetch_assoc();
+$username = $userfetch["pname"];
+$useremail = $userfetch["pemail"];
+$userphone = $userfetch["ptel"];
+?>
+
+
+<header>
+        <a href="../patient/index.php">
+            <img src="logo.png" alt="Logo" class="logo">
+        </a>
+    </header>
+
     <div class="appointment-form animate-form">
         <h2>Book an Appointment</h2>
         <form action="" method="POST" id="appointmentForm">
             <div class="form-content">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($username); ?>" readonly>
             </div>
 
             <div class="form-content">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($useremail); ?>" readonly>
             </div>
 
             <div class="form-content">
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($userphone); ?>" readonly>
             </div>
 
             <div class="form-content">

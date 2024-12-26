@@ -14,8 +14,43 @@
 
 
 </head>
+<style>
+      
+        header {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Changed from left to right */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
 
-<body>
+header a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.logo {
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Keeps aspect ratio */
+    display: block;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow */
+    border-radius: 8px; /* Optional: Slightly rounds the edges */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition on hover */
+}
+
+.logo:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Shadow becomes stronger on hover */
+}
+
+    </style>
+
+<body style="background: url('R.jpg') no-repeat center center fixed; background-size: cover;">
+
+<header>
+        <a href="index.php">
+            <img src="logo.png" alt="Logo" class="logo">
+        </a>
+    </header>
     <?php
 
     //learn from w3schools.com

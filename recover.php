@@ -69,11 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="image/logo.png" rel="icon" />
 </head>
 
-<body>
+<body style="background: url('R.jpg') no-repeat center center fixed; background-size: cover;">
 
     <form method="POST">
         <div class="logo">
-            <img src="image/logo.png" alt="Logo">
+            <img src="img/logo.png" alt="Logo">
         </div>
         <h2>Forgot Password</h2>
         <input type="email" name="email" required placeholder="Enter your email">

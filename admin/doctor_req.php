@@ -213,17 +213,18 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['pname']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['pemail']) . "</td>";
-                            echo "<td>";
-                            echo "<button onclick=\"showPopup('accept', " . $row['pid'] . ")\">Accept</button>";
-                            echo "<button onclick=\"showPopup('decline', " . $row['pid'] . ")\">Decline</button>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
+                 if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['pname']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['pemail']) . "</td>";
+                        echo "<td>";
+                        echo "<button class='btn-accept' onclick=\"showPopup('accept', " . $row['pid'] . ")\">Accept</button>";
+                        echo "<button class='btn-decline' onclick=\"showPopup('decline', " . $row['pid'] . ")\">Decline</button>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                
                     } else {
                         echo "<tr><td colspan='3'>No doctor requests found.</td></tr>";
                     }
@@ -246,4 +247,40 @@
         }
     </script>
 </body>
+
+<style>
+     .btn-accept {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+        margin-right: 1rem; /* Increased margin to move further right */
+    }
+
+    .btn-accept:hover {
+        background-color: #218838;
+    }
+
+    .btn-decline {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+        margin-left: 1rem; /* Add left margin for consistent spacing */
+    }
+
+    .btn-decline:hover {
+        background-color: #c82333;
+    }
+
+   
+</style>
 </html>

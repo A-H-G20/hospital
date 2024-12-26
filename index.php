@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
-    <title>eDoc</title>
+    <title>Medical Center</title>
     <style>
         table {
             animation: transitionIn-Y-bottom 0.5s;
@@ -24,7 +24,7 @@
             <table border="0">
                 <tr>
                     <td width="80%">
-                        <font class="edoc-logo">eDoc. </font>
+                        <font class="edoc-logo">Medical Center </font>
                         <font class="edoc-logo-sub">| THE ECHANNELING PROJECT</font>
                     </td>
                     <td width="10%">
@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <p class="sub-text2">How is health today, Sounds like not good!<br>Don't worry. Find your doctor online Book as you wish with eDoc. <br>
+                        <p class="sub-text2">How is health today, Sounds like not good!<br>Don't worry. Find your doctor online Book as you wish with Medical Center <br>
                             We offer you a free doctor channeling service, Make your appointment now.</p>
                     </td>
                 </tr>

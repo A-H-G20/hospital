@@ -2,6 +2,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f6f9;
+  background-image: url("../img/R.jpg");
   margin: 0;
   padding: 0;
   display: flex;
@@ -95,4 +96,44 @@ input[type="submit"]:hover {
   input[type="submit"] {
     font-size: 14px;
   }
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Make sure the body takes up the full height of the viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../img/R.jpg') no-repeat center center fixed; /* Set the path to R.jpg */
+  background-size: cover; /* Ensures the background image covers the entire container */
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8); /* Optional: Light background for better contrast */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Center-align text in the container */
+}
+
+input[type="text"], input[type="submit"] {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Full width for inputs */
+  max-width: 300px; /* Optional: Set a max-width */
+}
+
+input[type="submit"] {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker shade on hover */
 }
